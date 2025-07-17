@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block body %}
+        <div class="container mt-3">
+            <h1 style="color: rgb(201, 2, 184)">Comunidade NBL</h1>
+            <hr>
+            {% for post in posts %}
+                <div class="row border mt-4 p-3 meupost" >
+                    <div class="col col-2">
+                        <h4 class="mb-0 mt-0">{{ post.autor.nome_usuario }}</h4> <span>{{ post.autor.email }}</span>
+                        <div class="image pe-2"> <img src="{{ url_for('static', filename='foto_perfil/{}'.format(post.autor.foto_perfil)) }}" class="rounded" width="200"> </div>
+                    </div>
+                    <div class="col col-9">
+                    <small class="text-muted" style="font-size: 15px"> {{ post.data_criacao.strftime('%d/%m/%Y %H:%M') }}</small>
+                        <a style="text-decoration: none" href="{{ url_for('exibir_post', post_id=post.id)}}">
+                            <h3> {{ post.titulo }}</h3>
+                        </a>
+                        <hr>
+                        <p> {{ post.corpo }} </p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+{% endblock %}
