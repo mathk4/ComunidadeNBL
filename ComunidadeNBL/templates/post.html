@@ -1,26 +1,32 @@
 {% extends 'base.html' %}
 
 {% block body %}
-        <div class="container mt-3">
-                <div class="row border mt-4 p-3 meupost">
-                    <div class="col col-2">
-                        <h4 class="mb-0 mt-0">{{ post.autor.nome_usuario }}</h4> <span>{{ post.autor.email }}</span>
-                        <div class="image pe-2"> <img src="{{ url_for('static', filename='foto_perfil/{}'.format(post.autor.foto_perfil)) }}" class="rounded" width="200"> </div>
-                    </div>
-                    <div class="col col-9">
-                        <h3> {{ post.titulo }}
-                            <small class="text-muted" style="font-size: 15px"> {{ post.data_criacao.strftime('%d/%m/%Y %H:%M') }}
-                                {% if form %}
-                                    - <a href="#form_editar_post">Editar Post </a>
-                                    - <a href="#" class="text-danger" data-bs-toggle="modal" data-bs-target="#Excluir_post">Excluir Post</a>
-                                {% endif %}
-                            </small>
-                        </h3> 
-                        <hr>
-                        <p> {{ post.corpo }} </p>
-                    </div>
+    <div class="container mt-3">
+        <div class="row border mt-4 p-3 meupost">
+            <div class="col-12 col-md-2 d-flex flex-column mb-3 mb-md-0">
+                <div>
+                    <h4 class="mb-0">{{ post.autor.nome_usuario }}</h4> 
+                    <span>{{ post.autor.email }}</span>
                 </div>
+                <div class="image pe-2 mt-2"> 
+                    <img src="{{ url_for('static', filename='foto_perfil/{}'.format(post.autor.foto_perfil)) }}" class="rounded img-fluid" alt="Foto de Perfil"> 
+                </div>
+            </div>
+            
+            <div class="col-12 col-md-9 offset-md-1">
+                <h3> {{ post.titulo }}
+                    <small class="text-muted" style="font-size: 15px"> {{ post.data_criacao.strftime('%d/%m/%Y %H:%M') }}
+                        {% if form %}
+                            - <a href="#form_editar_post">Editar Post </a>
+                            - <a href="#" class="text-danger" data-bs-toggle="modal" data-bs-target="#Excluir_post">Excluir Post</a>
+                        {% endif %}
+                    </small>
+                </h3> 
+                <hr>
+                <p> {{ post.corpo }} </p>
+            </div>
         </div>
+    </div>
 
 {% if form %}
         <div class="container">
